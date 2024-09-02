@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 const config = {
   darkMode: ['class'],
   content: [
@@ -11,6 +13,12 @@ const config = {
   plugins: [require('tailwindcss-animate')],
   theme: {
     extend: {
+      fontFamily: {
+        depmono: [
+          'var(--font-departure-mono)',
+          ...defaultTheme.fontFamily.mono,
+        ],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

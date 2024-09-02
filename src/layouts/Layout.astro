@@ -61,7 +61,7 @@ const socialImageUrl = new URL('/social-card.jpg', Astro.url).href;
       href="/rss.xml"
     />
   </head>
-  <body>
+  <body class="font-depmono">
     <slot />
   </body>
 </html>
@@ -69,12 +69,13 @@ const socialImageUrl = new URL('/social-card.jpg', Astro.url).href;
   :root {
     --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --font-departure-mono: 'DepartureMono';
   }
 
-  html,
+  /* html,
   body {
     font-family: var(--system-ui);
-  }
+  } */
 
   html {
     height: 100%;

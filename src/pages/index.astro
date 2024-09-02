@@ -4,10 +4,10 @@ import { CalibrateForm } from '@/components/CalibrateForm';
 ---
 
 <Layout meta={{ title: 'Home' }}>
-  <main class="mx-24 mt-80">
-    <div class="flex flex-col items-center">
-      <h1 class="text-4xl">Calibrator</h1>
-      <CalibrateForm />
+  <main class="flex h-svh items-center justify-center">
+    <div class="flex flex-col items-center gap-24">
+      <h1 class="text-4xl uppercase">Calibrator</h1>
+      <CalibrateForm client:load />
     </div>
   </main>
 </Layout>

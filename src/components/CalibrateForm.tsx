@@ -1,5 +1,3 @@
-'use client';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -17,23 +15,23 @@ import {
 import { Input } from '@/components/ui/input';
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
+  dataset: z.string({ required_error: 'A name is required for the dataset' }),
+  file: z.custom((value) => {
+    if (!(value instanceof FileList) || value.length === 0) {
+      return false;
+    }
+
+    const file = value[0];
+    return file.type === 'application/x-gzip';
+  }, 'Please upload a tar.gz file'),
 });
 
 const CalibrateForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: '',
-    },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -42,15 +40,35 @@ const CalibrateForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="dataset"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Dataset name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="steepest-descent" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name.
+                This name will be used to create your input dataset
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="file"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>File</FormLabel>
+              <FormControl>
+                <Input
+                  type="file"
+                  accept=".tar.gz"
+                  onChange={(e) => field.onChange(e.target.files)}
+                />
+              </FormControl>
+              <FormDescription>
+                Upload a tar.gz with your images
               </FormDescription>
               <FormMessage />
             </FormItem>
