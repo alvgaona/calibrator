@@ -1,11 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Button } from '@/components/ui/button';
+import { CalibrateForm } from '@/components/CalibrateForm';
 ---
 
-<Layout meta={{ title: "Home"}}>
-	<main>
-	   <Button>Click me</Button>
-	  <span class="text-white">Calibrator</span>
-	</main>
+<Layout meta={{ title: 'Home' }}>
+  <main class="mx-24 mt-80">
+    <div class="flex flex-col items-center">
+      <h1 class="text-4xl">Calibrator</h1>
+      <CalibrateForm />
+    </div>
+  </main>
 </Layout>

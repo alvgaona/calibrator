@@ -1,9 +1,9 @@
 ---
-import "@/styles/globals.css";
-import siteMeta from "@/site-meta";
+import '@/styles/globals.css';
+import siteMeta from '@/site-meta';
 
 interface Props {
-	meta: Record<any, any>;
+  meta: Record<any, any>;
 }
 
 const { meta } = Astro.props;
@@ -15,8 +15,8 @@ const socialImageUrl = new URL('/social-card.jpg', Astro.url).href;
 
 <!doctype html>
 <html lang="en">
-	<head>
-	<meta charset="utf-8" />
+  <head>
+    <meta charset="utf-8" />
     <meta name="description" content={meta.description} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -60,18 +60,27 @@ const socialImageUrl = new URL('/social-card.jpg', Astro.url).href;
       title={siteMeta.title}
       href="/rss.xml"
     />
-	</head>
-	<body>
-		<slot />
-	</body>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-	  --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-	}
+  :root {
+    --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
 
-	html,
+  html,
   body {
     font-family: var(--system-ui);
+  }
+
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
   }
 </style>
