@@ -1,6 +1,7 @@
 ---
 import '@/styles/globals.css';
 import siteMeta from '@/site-meta';
+import { Toaster } from '@/components/ui/sonner';
 
 interface Props {
   meta: Record<any, any>;
@@ -63,6 +64,7 @@ const socialImageUrl = new URL('/social-card.jpg', Astro.url).href;
   </head>
   <body class="font-depmono">
     <slot />
+    <Toaster client:load richColors closeButton />
   </body>
 </html>
 <style is:global>
