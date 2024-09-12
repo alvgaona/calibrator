@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+import { ulid } from 'ulid';
+
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -14,7 +16,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { v4 as uuidv4 } from 'uuid';
 
 const formSchema = z.object({
   dataset: z.string({ required_error: 'A name is required for the dataset' }),
@@ -66,7 +67,7 @@ const CalibrateForm = () => {
     const file = (values.file as FileList)[0];
 
     const presignedUrl = await getPresignedUrl(
-      uuidv4(),
+      ulid(),
       values.dataset,
       file.name,
     );
