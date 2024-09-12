@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { ulid } from 'ulid';
-
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -39,7 +37,7 @@ const CalibrateForm = () => {
   });
 
   async function getPresignedUrl(
-    runId: string,
+    userId: string,
     dataset: string,
     fileName: string,
   ): Promise<string> {
@@ -49,7 +47,7 @@ const CalibrateForm = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        runId,
+        userId,
         dataset,
         fileName,
       }),
@@ -67,7 +65,7 @@ const CalibrateForm = () => {
     const file = (values.file as FileList)[0];
 
     const presignedUrl = await getPresignedUrl(
-      ulid(),
+      '123', // TODO: remove hardcoded id
       values.dataset,
       file.name,
     );
